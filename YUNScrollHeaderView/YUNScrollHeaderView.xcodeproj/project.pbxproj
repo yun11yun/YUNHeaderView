@@ -24,6 +24,9 @@
 		C2437F2A1CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F291CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m */; };
 		C2437F2E1CCA1E19002E09E3 /* YUNBaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F2D1CCA1E19002E09E3 /* YUNBaseHeaderView.m */; };
 		C2437F311CCA341B002E09E3 /* YUNZoomHeaderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F301CCA341B002E09E3 /* YUNZoomHeaderControl.m */; };
+		C2743BA01CCF0348009955B8 /* qiong.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2743B9D1CCF0348009955B8 /* qiong.jpg */; };
+		C2743BA11CCF0348009955B8 /* qiong1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2743B9E1CCF0348009955B8 /* qiong1.jpg */; };
+		C2743BA21CCF0348009955B8 /* qiong2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2743B9F1CCF0348009955B8 /* qiong2.jpg */; };
 		FAAB48C21CCE57D6003D43F4 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAB48C11CCE57D6003D43F4 /* test.jpg */; };
 		FAAB48C51CCE61EA003D43F4 /* YUNZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAB48C41CCE61EA003D43F4 /* YUNZoomScrollView.m */; };
 /* End PBXBuildFile section */
@@ -73,6 +76,9 @@
 		C2437F2D1CCA1E19002E09E3 /* YUNBaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNBaseHeaderView.m; sourceTree = "<group>"; };
 		C2437F2F1CCA341B002E09E3 /* YUNZoomHeaderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNZoomHeaderControl.h; sourceTree = "<group>"; };
 		C2437F301CCA341B002E09E3 /* YUNZoomHeaderControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNZoomHeaderControl.m; sourceTree = "<group>"; };
+		C2743B9D1CCF0348009955B8 /* qiong.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = qiong.jpg; sourceTree = "<group>"; };
+		C2743B9E1CCF0348009955B8 /* qiong1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = qiong1.jpg; sourceTree = "<group>"; };
+		C2743B9F1CCF0348009955B8 /* qiong2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = qiong2.jpg; sourceTree = "<group>"; };
 		FAAB48C11CCE57D6003D43F4 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		FAAB48C31CCE61EA003D43F4 /* YUNZoomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNZoomScrollView.h; sourceTree = "<group>"; };
 		FAAB48C41CCE61EA003D43F4 /* YUNZoomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNZoomScrollView.m; sourceTree = "<group>"; };
@@ -147,6 +153,9 @@
 		C2437ED71CCA01EA002E09E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C2743B9D1CCF0348009955B8 /* qiong.jpg */,
+				C2743B9E1CCF0348009955B8 /* qiong1.jpg */,
+				C2743B9F1CCF0348009955B8 /* qiong2.jpg */,
 				FAAB48C11CCE57D6003D43F4 /* test.jpg */,
 				C2437ED81CCA01EA002E09E3 /* main.m */,
 			);
@@ -267,6 +276,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2743BA11CCF0348009955B8 /* qiong1.jpg in Resources */,
+				C2743BA01CCF0348009955B8 /* qiong.jpg in Resources */,
+				C2743BA21CCF0348009955B8 /* qiong2.jpg in Resources */,
 				C2437EE71CCA01EA002E09E3 /* LaunchScreen.storyboard in Resources */,
 				C2437EE41CCA01EA002E09E3 /* Assets.xcassets in Resources */,
 				C2437EE21CCA01EA002E09E3 /* Main.storyboard in Resources */,

@@ -34,7 +34,7 @@
     
     YUNZoomScrollView *headerView = [[YUNZoomScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.yun_width, 200)];
     headerView.backgroundColor = [UIColor orangeColor];
-//    headerView.layer.contents = (id)[UIImage imageNamed:@"test.jpg"].CGImage;
+    headerView.imageNames = @[@"qiong.jpg", @"qiong1.jpg", @"qiong2.jpg",];
     [self.tableView addHeaderView:headerView];
     
     YUNZoomHeaderControl *zoomControl = [[YUNZoomHeaderControl alloc] init];
