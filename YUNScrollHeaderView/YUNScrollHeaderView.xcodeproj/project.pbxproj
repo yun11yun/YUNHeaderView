@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2437ED91CCA01EA002E09E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437ED81CCA01EA002E09E3 /* main.m */; };
+		C2437EDC1CCA01EA002E09E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437EDB1CCA01EA002E09E3 /* AppDelegate.m */; };
+		C2437EDF1CCA01EA002E09E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437EDE1CCA01EA002E09E3 /* ViewController.m */; };
+		C2437EE21CCA01EA002E09E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2437EE01CCA01EA002E09E3 /* Main.storyboard */; };
+		C2437EE41CCA01EA002E09E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2437EE31CCA01EA002E09E3 /* Assets.xcassets */; };
+		C2437EE71CCA01EA002E09E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2437EE51CCA01EA002E09E3 /* LaunchScreen.storyboard */; };
+		C2437EF21CCA01EA002E09E3 /* YUNScrollHeaderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437EF11CCA01EA002E09E3 /* YUNScrollHeaderViewTests.m */; };
+		C2437EFE1CCA0262002E09E3 /* UIScrollView+YUNHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437EFD1CCA0262002E09E3 /* UIScrollView+YUNHeader.m */; };
+		C2437F021CCA0788002E09E3 /* YUNHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F011CCA0788002E09E3 /* YUNHeaderView.m */; };
+		C2437F1D1CCA09A4002E09E3 /* UIScrollView+YUNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F1A1CCA09A4002E09E3 /* UIScrollView+YUNExtension.m */; };
+		C2437F1E1CCA09A4002E09E3 /* UIView+YUNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F1C1CCA09A4002E09E3 /* UIView+YUNExtension.m */; };
+		C2437F211CCA100D002E09E3 /* YUNHeaderViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F201CCA100D002E09E3 /* YUNHeaderViewControl.m */; };
+		C2437F241CCA1100002E09E3 /* UIScrollViewScrollInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F231CCA1100002E09E3 /* UIScrollViewScrollInfo.m */; };
+		C2437F271CCA1166002E09E3 /* UIScrollViewContentOffsetObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F261CCA1166002E09E3 /* UIScrollViewContentOffsetObserver.m */; };
+		C2437F2A1CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F291CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m */; };
+		C2437F2E1CCA1E19002E09E3 /* YUNBaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F2D1CCA1E19002E09E3 /* YUNBaseHeaderView.m */; };
+		C2437F311CCA341B002E09E3 /* YUNZoomHeaderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2437F301CCA341B002E09E3 /* YUNZoomHeaderControl.m */; };
+		FAAB48C21CCE57D6003D43F4 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FAAB48C11CCE57D6003D43F4 /* test.jpg */; };
+		FAAB48C51CCE61EA003D43F4 /* YUNZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAB48C41CCE61EA003D43F4 /* YUNZoomScrollView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C2437EEE1CCA01EA002E09E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2437ECC1CCA01EA002E09E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2437ED31CCA01EA002E09E3;
+			remoteInfo = YUNScrollHeaderView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C2437ED41CCA01EA002E09E3 /* YUNScrollHeaderView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YUNScrollHeaderView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2437ED81CCA01EA002E09E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C2437EDA1CCA01EA002E09E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C2437EDB1CCA01EA002E09E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C2437EDD1CCA01EA002E09E3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C2437EDE1CCA01EA002E09E3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C2437EE11CCA01EA002E09E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C2437EE31CCA01EA002E09E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C2437EE61CCA01EA002E09E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C2437EE81CCA01EA002E09E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2437EED1CCA01EA002E09E3 /* YUNScrollHeaderViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YUNScrollHeaderViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2437EF11CCA01EA002E09E3 /* YUNScrollHeaderViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YUNScrollHeaderViewTests.m; sourceTree = "<group>"; };
+		C2437EF31CCA01EA002E09E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2437EFC1CCA0262002E09E3 /* UIScrollView+YUNHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YUNHeader.h"; sourceTree = "<group>"; };
+		C2437EFD1CCA0262002E09E3 /* UIScrollView+YUNHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YUNHeader.m"; sourceTree = "<group>"; };
+		C2437F001CCA0788002E09E3 /* YUNHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNHeaderView.h; sourceTree = "<group>"; };
+		C2437F011CCA0788002E09E3 /* YUNHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNHeaderView.m; sourceTree = "<group>"; };
+		C2437F181CCA09A4002E09E3 /* UIKit+YUNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+YUNExtension.h"; sourceTree = "<group>"; };
+		C2437F191CCA09A4002E09E3 /* UIScrollView+YUNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YUNExtension.h"; sourceTree = "<group>"; };
+		C2437F1A1CCA09A4002E09E3 /* UIScrollView+YUNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YUNExtension.m"; sourceTree = "<group>"; };
+		C2437F1B1CCA09A4002E09E3 /* UIView+YUNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YUNExtension.h"; sourceTree = "<group>"; };
+		C2437F1C1CCA09A4002E09E3 /* UIView+YUNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YUNExtension.m"; sourceTree = "<group>"; };
+		C2437F1F1CCA100D002E09E3 /* YUNHeaderViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNHeaderViewControl.h; sourceTree = "<group>"; };
+		C2437F201CCA100D002E09E3 /* YUNHeaderViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNHeaderViewControl.m; sourceTree = "<group>"; };
+		C2437F221CCA1100002E09E3 /* UIScrollViewScrollInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScrollViewScrollInfo.h; sourceTree = "<group>"; };
+		C2437F231CCA1100002E09E3 /* UIScrollViewScrollInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollViewScrollInfo.m; sourceTree = "<group>"; };
+		C2437F251CCA1166002E09E3 /* UIScrollViewContentOffsetObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScrollViewContentOffsetObserver.h; sourceTree = "<group>"; };
+		C2437F261CCA1166002E09E3 /* UIScrollViewContentOffsetObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollViewContentOffsetObserver.m; sourceTree = "<group>"; };
+		C2437F281CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ContentOffsetObserver.h"; sourceTree = "<group>"; };
+		C2437F291CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ContentOffsetObserver.m"; sourceTree = "<group>"; };
+		C2437F2C1CCA1E19002E09E3 /* YUNBaseHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNBaseHeaderView.h; sourceTree = "<group>"; };
+		C2437F2D1CCA1E19002E09E3 /* YUNBaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNBaseHeaderView.m; sourceTree = "<group>"; };
+		C2437F2F1CCA341B002E09E3 /* YUNZoomHeaderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNZoomHeaderControl.h; sourceTree = "<group>"; };
+		C2437F301CCA341B002E09E3 /* YUNZoomHeaderControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNZoomHeaderControl.m; sourceTree = "<group>"; };
+		FAAB48C11CCE57D6003D43F4 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		FAAB48C31CCE61EA003D43F4 /* YUNZoomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNZoomScrollView.h; sourceTree = "<group>"; };
+		FAAB48C41CCE61EA003D43F4 /* YUNZoomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNZoomScrollView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2437ED11CCA01EA002E09E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2437EEA1CCA01EA002E09E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2437ECB1CCA01EA002E09E3 = {
+			isa = PBXGroup;
+			children = (
+				C2437ED61CCA01EA002E09E3 /* YUNScrollHeaderView */,
+				C2437EF01CCA01EA002E09E3 /* YUNScrollHeaderViewTests */,
+				C2437ED51CCA01EA002E09E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2437ED51CCA01EA002E09E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2437ED41CCA01EA002E09E3 /* YUNScrollHeaderView.app */,
+				C2437EED1CCA01EA002E09E3 /* YUNScrollHeaderViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2437ED61CCA01EA002E09E3 /* YUNScrollHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				C2437EDA1CCA01EA002E09E3 /* AppDelegate.h */,
+				C2437EDB1CCA01EA002E09E3 /* AppDelegate.m */,
+				C2437EDD1CCA01EA002E09E3 /* ViewController.h */,
+				C2437EDE1CCA01EA002E09E3 /* ViewController.m */,
+				C2437EFC1CCA0262002E09E3 /* UIScrollView+YUNHeader.h */,
+				C2437EFD1CCA0262002E09E3 /* UIScrollView+YUNHeader.m */,
+				C2437F1F1CCA100D002E09E3 /* YUNHeaderViewControl.h */,
+				C2437F201CCA100D002E09E3 /* YUNHeaderViewControl.m */,
+				C2437F2C1CCA1E19002E09E3 /* YUNBaseHeaderView.h */,
+				C2437F2D1CCA1E19002E09E3 /* YUNBaseHeaderView.m */,
+				C2437F001CCA0788002E09E3 /* YUNHeaderView.h */,
+				C2437F011CCA0788002E09E3 /* YUNHeaderView.m */,
+				C2437F2F1CCA341B002E09E3 /* YUNZoomHeaderControl.h */,
+				C2437F301CCA341B002E09E3 /* YUNZoomHeaderControl.m */,
+				FAAB48C31CCE61EA003D43F4 /* YUNZoomScrollView.h */,
+				FAAB48C41CCE61EA003D43F4 /* YUNZoomScrollView.m */,
+				C2437F2B1CCA18E6002E09E3 /* ScrollViewObserver */,
+				C2437F171CCA09A4002E09E3 /* UIKitExtension */,
+				C2437EE01CCA01EA002E09E3 /* Main.storyboard */,
+				C2437EE31CCA01EA002E09E3 /* Assets.xcassets */,
+				C2437EE51CCA01EA002E09E3 /* LaunchScreen.storyboard */,
+				C2437EE81CCA01EA002E09E3 /* Info.plist */,
+				C2437ED71CCA01EA002E09E3 /* Supporting Files */,
+			);
+			path = YUNScrollHeaderView;
+			sourceTree = "<group>";
+		};
+		C2437ED71CCA01EA002E09E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAAB48C11CCE57D6003D43F4 /* test.jpg */,
+				C2437ED81CCA01EA002E09E3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2437EF01CCA01EA002E09E3 /* YUNScrollHeaderViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				C2437EF11CCA01EA002E09E3 /* YUNScrollHeaderViewTests.m */,
+				C2437EF31CCA01EA002E09E3 /* Info.plist */,
+			);
+			path = YUNScrollHeaderViewTests;
+			sourceTree = "<group>";
+		};
+		C2437F171CCA09A4002E09E3 /* UIKitExtension */ = {
+			isa = PBXGroup;
+			children = (
+				C2437F181CCA09A4002E09E3 /* UIKit+YUNExtension.h */,
+				C2437F191CCA09A4002E09E3 /* UIScrollView+YUNExtension.h */,
+				C2437F1A1CCA09A4002E09E3 /* UIScrollView+YUNExtension.m */,
+				C2437F1B1CCA09A4002E09E3 /* UIView+YUNExtension.h */,
+				C2437F1C1CCA09A4002E09E3 /* UIView+YUNExtension.m */,
+			);
+			path = UIKitExtension;
+			sourceTree = "<group>";
+		};
+		C2437F2B1CCA18E6002E09E3 /* ScrollViewObserver */ = {
+			isa = PBXGroup;
+			children = (
+				C2437F221CCA1100002E09E3 /* UIScrollViewScrollInfo.h */,
+				C2437F231CCA1100002E09E3 /* UIScrollViewScrollInfo.m */,
+				C2437F251CCA1166002E09E3 /* UIScrollViewContentOffsetObserver.h */,
+				C2437F261CCA1166002E09E3 /* UIScrollViewContentOffsetObserver.m */,
+				C2437F281CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.h */,
+				C2437F291CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m */,
+			);
+			name = ScrollViewObserver;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2437ED31CCA01EA002E09E3 /* YUNScrollHeaderView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2437EF61CCA01EA002E09E3 /* Build configuration list for PBXNativeTarget "YUNScrollHeaderView" */;
+			buildPhases = (
+				C2437ED01CCA01EA002E09E3 /* Sources */,
+				C2437ED11CCA01EA002E09E3 /* Frameworks */,
+				C2437ED21CCA01EA002E09E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YUNScrollHeaderView;
+			productName = YUNScrollHeaderView;
+			productReference = C2437ED41CCA01EA002E09E3 /* YUNScrollHeaderView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C2437EEC1CCA01EA002E09E3 /* YUNScrollHeaderViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2437EF91CCA01EA002E09E3 /* Build configuration list for PBXNativeTarget "YUNScrollHeaderViewTests" */;
+			buildPhases = (
+				C2437EE91CCA01EA002E09E3 /* Sources */,
+				C2437EEA1CCA01EA002E09E3 /* Frameworks */,
+				C2437EEB1CCA01EA002E09E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2437EEF1CCA01EA002E09E3 /* PBXTargetDependency */,
+			);
+			name = YUNScrollHeaderViewTests;
+			productName = YUNScrollHeaderViewTests;
+			productReference = C2437EED1CCA01EA002E09E3 /* YUNScrollHeaderViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2437ECC1CCA01EA002E09E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Tordian;
+				TargetAttributes = {
+					C2437ED31CCA01EA002E09E3 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					C2437EEC1CCA01EA002E09E3 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = C2437ED31CCA01EA002E09E3;
+					};
+				};
+			};
+			buildConfigurationList = C2437ECF1CCA01EA002E09E3 /* Build configuration list for PBXProject "YUNScrollHeaderView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C2437ECB1CCA01EA002E09E3;
+			productRefGroup = C2437ED51CCA01EA002E09E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2437ED31CCA01EA002E09E3 /* YUNScrollHeaderView */,
+				C2437EEC1CCA01EA002E09E3 /* YUNScrollHeaderViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2437ED21CCA01EA002E09E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2437EE71CCA01EA002E09E3 /* LaunchScreen.storyboard in Resources */,
+				C2437EE41CCA01EA002E09E3 /* Assets.xcassets in Resources */,
+				C2437EE21CCA01EA002E09E3 /* Main.storyboard in Resources */,
+				FAAB48C21CCE57D6003D43F4 /* test.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2437EEB1CCA01EA002E09E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2437ED01CCA01EA002E09E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2437EDF1CCA01EA002E09E3 /* ViewController.m in Sources */,
+				C2437F2E1CCA1E19002E09E3 /* YUNBaseHeaderView.m in Sources */,
+				C2437F2A1CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m in Sources */,
+				C2437F021CCA0788002E09E3 /* YUNHeaderView.m in Sources */,
+				C2437F211CCA100D002E09E3 /* YUNHeaderViewControl.m in Sources */,
+				FAAB48C51CCE61EA003D43F4 /* YUNZoomScrollView.m in Sources */,
+				C2437F1D1CCA09A4002E09E3 /* UIScrollView+YUNExtension.m in Sources */,
+				C2437F1E1CCA09A4002E09E3 /* UIView+YUNExtension.m in Sources */,
+				C2437EDC1CCA01EA002E09E3 /* AppDelegate.m in Sources */,
+				C2437ED91CCA01EA002E09E3 /* main.m in Sources */,
+				C2437F241CCA1100002E09E3 /* UIScrollViewScrollInfo.m in Sources */,
+				C2437F311CCA341B002E09E3 /* YUNZoomHeaderControl.m in Sources */,
+				C2437F271CCA1166002E09E3 /* UIScrollViewContentOffsetObserver.m in Sources */,
+				C2437EFE1CCA0262002E09E3 /* UIScrollView+YUNHeader.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2437EE91CCA01EA002E09E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2437EF21CCA01EA002E09E3 /* YUNScrollHeaderViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C2437EEF1CCA01EA002E09E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2437ED31CCA01EA002E09E3 /* YUNScrollHeaderView */;
+			targetProxy = C2437EEE1CCA01EA002E09E3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C2437EE01CCA01EA002E09E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2437EE11CCA01EA002E09E3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C2437EE51CCA01EA002E09E3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2437EE61CCA01EA002E09E3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C2437EF41CCA01EA002E09E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C2437EF51CCA01EA002E09E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C2437EF71CCA01EA002E09E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YUNScrollHeaderView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tordian.YUNScrollHeaderView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C2437EF81CCA01EA002E09E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YUNScrollHeaderView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tordian.YUNScrollHeaderView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C2437EFA1CCA01EA002E09E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = YUNScrollHeaderViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tordian.YUNScrollHeaderViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YUNScrollHeaderView.app/YUNScrollHeaderView";
+			};
+			name = Debug;
+		};
+		C2437EFB1CCA01EA002E09E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = YUNScrollHeaderViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tordian.YUNScrollHeaderViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YUNScrollHeaderView.app/YUNScrollHeaderView";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2437ECF1CCA01EA002E09E3 /* Build configuration list for PBXProject "YUNScrollHeaderView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2437EF41CCA01EA002E09E3 /* Debug */,
+				C2437EF51CCA01EA002E09E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2437EF61CCA01EA002E09E3 /* Build configuration list for PBXNativeTarget "YUNScrollHeaderView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2437EF71CCA01EA002E09E3 /* Debug */,
+				C2437EF81CCA01EA002E09E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2437EF91CCA01EA002E09E3 /* Build configuration list for PBXNativeTarget "YUNScrollHeaderViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2437EFA1CCA01EA002E09E3 /* Debug */,
+				C2437EFB1CCA01EA002E09E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C2437ECC1CCA01EA002E09E3 /* Project object */;
+}
