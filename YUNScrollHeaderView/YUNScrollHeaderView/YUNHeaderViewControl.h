@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "UIScrollViewContentOffsetObserver.h"
-#import "YUNBaseHeaderView.h"
+#import "YUNHeaderViewProtocol.h"
 
 @class YUNBaseHeaderView;
 
 @interface YUNHeaderViewControl : NSObject<UIScrollViewContentOffsetObserverDelegate>
 
-@property (nonatomic, strong) YUNBaseHeaderView *headerView;
+@property (nonatomic, strong) UIView<YUNHeaderViewProtocol> *headerView;
 
 // 由子类覆写 
 - (void)resetHeaderViewWithInfo:(UIScrollViewScrollInfo *)info;

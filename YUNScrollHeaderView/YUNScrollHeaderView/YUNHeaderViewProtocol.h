@@ -1,12 +1,12 @@
 //
-//  YUNBaseHeaderView.h
+//  YUNHeaderViewProtocol.h
 //  YUNScrollHeaderView
 //
-//  Created by Orange on 4/22/16.
+//  Created by Orange on 4/26/16.
 //  Copyright © 2016 Tordian. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "UIScrollViewScrollInfo.h"
 
 typedef NS_ENUM(NSInteger, YUNHeaderViewHierarchy)
@@ -22,11 +22,13 @@ typedef NS_ENUM(NSInteger, YUNHeaderViewHierarchy)
     YUNHeaderViewHierarchyBackground = 2,
 };
 
-@interface YUNBaseHeaderView : UIView
+@protocol YUNHeaderViewProtocol <NSObject>
 
 @property (nonatomic, assign) CGRect originFrame;
 
 @property (nonatomic, assign) YUNHeaderViewHierarchy hierarchy;
+
+@optional
 
 - (CGFloat)maximumHeight;
 

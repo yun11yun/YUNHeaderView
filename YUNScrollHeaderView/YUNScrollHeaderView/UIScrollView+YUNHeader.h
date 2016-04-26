@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YUNHeaderViewProtocol.h"
 
 @class YUNHeaderViewControl;
-@class YUNBaseHeaderView;
 
 @interface UIScrollView (YUNHeader)
 
-@property (nonatomic, strong, readonly) YUNBaseHeaderView *yun_headerView;
+@property (nonatomic, strong, readonly) UIView<YUNHeaderViewProtocol> *yun_headerView;
 
 @property (nonatomic, strong, readonly) YUNHeaderViewControl *yun_control;
 
-- (void)addHeaderView:(YUNBaseHeaderView *)headerView;
+- (void)addHeaderView:(UIView<YUNHeaderViewProtocol> *)headerView;
 
 - (void)removeHeaderView;
 

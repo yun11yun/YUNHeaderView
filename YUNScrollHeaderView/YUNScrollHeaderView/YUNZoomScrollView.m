@@ -1,288 +1,276 @@
 //
 //  YUNZoomScrollView.m
-//  YUNScrollHeaderView
+//  YUNZoomScrollView
 //
-//  Created by bit_tea on 16/4/25.
-//  Copyright © 2016年 Tordian. All rights reserved.
+//  Created by Orange on 3/27/16.
+//  Copyright © 2016 Tordian. All rights reserved.
 //
 
 #import "YUNZoomScrollView.h"
+#import "UIScrollViewScrollInfo.h"
+#import "NSTimer+Control.h"
+#import "YUNZoomScrollViewCell.h"
 
-@interface YUNZoomScrollView ()<UIScrollViewDelegate>
+@interface YUNZoomScrollView () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSTimer *animationTimer;
 
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic, strong, readwrite) UICollectionView *collectionView;
 
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 
 @property (nonatomic, assign) NSInteger currentPageIndex;
 
-@property (nonatomic, assign) NSInteger totalPageCount;
+@property (nonatomic, assign) CGFloat originWidth;
 
-@property (nonatomic, strong) NSMutableArray *contentViews;
+@property (nonatomic, assign) CGFloat originHeight;
 
-@property (nonatomic, strong) NSMutableArray *subContentViews;
+@property (nonatomic, strong) UIImageView *stretchImageView;
 
-@property (nonatomic, strong) NSMutableArray *carouseArray;
+@property (nonatomic, strong) UIView *overlayView;
 
 @end
 
-@implementation YUNZoomScrollView
+static NSString * const kCellIdentifier = @"cellIdentifier";
 
-- (instancetype)initWithFrame:(CGRect)frame
-            animationDuration:(NSTimeInterval)animationDuration
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        _scrollView = ({
-            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-            scrollView.autoresizingMask = 0xFF;
-            scrollView.contentMode = UIViewContentModeCenter;
-            scrollView.contentSize = CGSizeMake(3 * CGRectGetWidth(scrollView.frame), 0);
-            scrollView.delegate = self;
-            scrollView.contentOffset = CGPointMake(CGRectGetWidth(scrollView.frame), 0);
-            scrollView.pagingEnabled = YES;
-            scrollView.showsHorizontalScrollIndicator = NO;
-            scrollView.backgroundColor = [UIColor whiteColor];
-            [self addSubview:scrollView];
-            scrollView;
-        });
-        _currentPageIndex = 0;
-        
-        if (animationDuration > 0.0) {
-            _animationDuration = animationDuration;
-            _animationTimer = [NSTimer scheduledTimerWithTimeInterval:_animationDuration target:self selector:@selector(animationTimerDidFired:) userInfo:nil repeats:YES];
-        }
-        
-    }
-    return self;
-}
+static CGFloat oldContentOffsetX = 0.0f;
+
+@implementation YUNZoomScrollView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     return [self initWithFrame:frame animationDuration:0.0];
 }
 
-- (NSMutableArray *)subContentViews
+- (instancetype)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)aniamtionDuration
 {
-    if (_subContentViews == nil) {
-        _subContentViews = [NSMutableArray array];
-    }
-    return _subContentViews;
-}
-
-- (void)setImageNames:(NSArray *)imageNames
-{
-    if (imageNames && imageNames.count != 0) {
-        _imageNames = [imageNames copy];
-        _carouseArray = [NSMutableArray arrayWithCapacity:imageNames.count];
-        [self setSubImageViewWithImages:_imageNames withURLType:NO];
-        [self configureContentViews];
-    }
-}
-
-- (void)setImageURLs:(NSArray *)imageURLs
-{
-    if (imageURLs && imageURLs.count != 0) {
-        _imageURLs = [imageURLs copy];
-        _carouseArray = [NSMutableArray arrayWithCapacity:imageURLs.count];
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.autoresizesSubviews = YES;
         
-        for (int i = 0; i < imageURLs.count; i ++) {
-            UIImage *image = [[UIImage alloc] init];
-            [_carouseArray addObject:image];
+        _originWidth = frame.size.width;
+        _originHeight = frame.size.height;
+        _enableStretch = NO;
+        _currentPageIndex = 0;
+        if (aniamtionDuration > 0.0) {
+            _animationDuration = aniamtionDuration;
+            _animationTimer = [NSTimer scheduledTimerWithTimeInterval:_animationDuration
+                                                               target:self
+                                                             selector:@selector(animationTimerDidFired:)
+                                                             userInfo:nil
+                                                              repeats:YES];
+            [_animationTimer pauseTimer];
         }
-        [self setSubImageViewWithImages:_imageURLs withURLType:YES];
-        [self configureContentViews];
+        
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        flowLayout.minimumLineSpacing = 0;
+        flowLayout.minimumInteritemSpacing = 0;
+        _flowLayout = flowLayout;
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.pagingEnabled = YES;
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        [_collectionView registerClass:[YUNZoomScrollViewCell class] forCellWithReuseIdentifier:kCellIdentifier];
+        [self addSubview:_collectionView];
+        
+        _stretchImageView = [[UIImageView alloc] init];
+        _stretchImageView.hidden = YES;
+        [self addSubview:_stretchImageView];
+        
+        _overlayView = [[UIView alloc] init];
+        _overlayView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
+        _overlayView.alpha = 0.0;
+        _overlayView.userInteractionEnabled = NO;
+        [self addSubview:_overlayView];
     }
+    return self;
 }
 
-- (void)setSubImageViewWithImages:(NSArray *)images withURLType:(BOOL)url
+- (void)layoutSubviews
 {
-    self.totalPageCount = images.count;
+    [super layoutSubviews];
     
-    NSMutableArray *viewsArray = [NSMutableArray array];
+    _flowLayout.itemSize = self.bounds.size;
+    _collectionView.frame = self.bounds;
     
-    if (images.count > 2) {
-        for (int i = 0; i < images.count; i ++) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_scrollView.frame), CGRectGetHeight(_scrollView.frame))];
-            if (url) {
-                
-            } else {
-                imageView.image = [UIImage imageNamed:images[i]];
-            }
-            [viewsArray addObject:imageView];
+    _overlayView.frame = self.bounds;
+}
+
+- (void)setDelegate:(id<YUNZoomScrollViewDelegate>)delegate
+{
+    if (delegate) {
+        _delegate = delegate;
+        [self.collectionView reloadData];
+        [self performSelector:@selector(startAnimationTimer) withObject:nil afterDelay:20];
+    }
+}
+
+- (UIImage *)imageAtIndex:(NSInteger)index
+{
+    YUNZoomScrollViewCell *cell = (YUNZoomScrollViewCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    if (cell) {
+        if (cell.imageView.image) {
+            return cell.imageView.image;
         }
-    } else if (images.count == 2) {
-        for (int i = 0; i < images.count * 2; i ++) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_scrollView.frame), CGRectGetHeight(_scrollView.frame))];
-            if (url) {
-                
-            } else {
-                imageView.image = [UIImage imageNamed:images[i % 2]];
-            }
-            [viewsArray addObject:imageView];
-        }
+    }
+    return nil;
+}
+
+#pragma mark - Private Methods
+
+- (void)startAnimationTimer
+{
+    [_animationTimer resumeTimer];
+}
+
+- (void)animationTimerDidFired:(NSTimer *)sender
+{
+    if (_currentPageIndex == [self.delegate numberOfItemInZoomScrollView:self] - 1) {
+        [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
     } else {
-        for (int i = 0; i < images.count * 4; i ++) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_scrollView.frame), CGRectGetHeight(_scrollView.frame))];
-            if (url) {
-                
-            } else {
-                imageView.image = [UIImage imageNamed:images[i]];
-            }
-            [viewsArray addObject:imageView];
-        }
-    }
-    self.subContentViews =  viewsArray;
-}
-
-- (void)configureContentViews
-{
-    [_scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [self setScrollViewContentDataSource];
-    
-    NSInteger counter = 0;
-    for (UIView *contentView in self.contentViews) {
-        contentView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentViewTapAction:)];
-        [contentView addGestureRecognizer:tapGesture];
-        CGRect rightRect = contentView.frame;
-        rightRect.origin = CGPointMake(CGRectGetWidth(_scrollView.frame) * counter, 0);
-        counter ++;
-        contentView.frame = rightRect;
-        [_scrollView addSubview:contentView];
+        [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:(_currentPageIndex + 1) inSection:0] atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
     }
 }
 
-- (void)setScrollViewContentDataSource
+- (void)setupImageForImageView:(UIImageView *)imageView atIndex:(NSInteger)index
 {
-    NSInteger previousPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
-    NSInteger rearPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
-    if (self.contentViews == nil) {
-        self.contentViews = [@[] mutableCopy];
-    }
-    [self.contentViews removeAllObjects];
-    if ([self featchContentViewAtIndex:self.currentPageIndex]) {
-        [self.contentViews addObject:[self featchContentViewAtIndex:previousPageIndex]];
-        [self.contentViews addObject:[self featchContentViewAtIndex:self.currentPageIndex]];
-        [self.contentViews addObject:[self featchContentViewAtIndex:rearPageIndex]];
-    }
-    if (self.totalPageCount > 1) {
-        self.scrollView.scrollEnabled = YES;
+    if ([self imageURLForIndex:index]) {
+        
+        
     } else {
-        self.scrollView.scrollEnabled = NO;
+        imageView.image = [self placeholderImageForIndex:index];
     }
 }
 
-- (UIView *)featchContentViewAtIndex:(NSInteger)index
+#pragma mark - UICollectionViewDelegate
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.subContentViews[index];
+    return [self itemCount];
 }
 
-- (NSInteger)getValidNextPageIndexWithPageIndex:(NSInteger)currentPageIndex
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.totalPageCount > 2) {
-        if(currentPageIndex == -1) {
-            return self.totalPageCount - 1;
-        } else if (currentPageIndex == self.totalPageCount) {
-            return 0;
-        } else {
-            return currentPageIndex;
-        }
-    } else if (self.totalPageCount == 2){
-        if(currentPageIndex == -1) {
-            return (self.totalPageCount * 2 - 1);
-        } else if (currentPageIndex == self.totalPageCount * 2) {
-            return 0;
-        } else {
-            return currentPageIndex;
-        }
-    } else {
-        if(currentPageIndex == -1) {
-            return (self.totalPageCount * 4 - 1);
-        } else if (currentPageIndex == self.totalPageCount * 4) {
-            return 0;
-        } else {
-            return currentPageIndex;
-        }
+    YUNZoomScrollViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
+    [self setupImageForImageView:cell.imageView atIndex:indexPath.row];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(zoomScrollView:didSelectedItemAtIndex:)]) {
+        [self.delegate zoomScrollView:self didSelectedItemAtIndex:indexPath.row];
     }
 }
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    if (self.totalPageCount > 1) {
-        
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (self.totalPageCount > 1) {
-        
-    }
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (_carouseArray == nil || _carouseArray.count == 0) {
+    CGFloat currentContentOffsetX = scrollView.contentOffset.x;
+    CGFloat deltaContentOffsetX = currentContentOffsetX - oldContentOffsetX;
+    if (deltaContentOffsetX >= CGRectGetWidth(scrollView.frame) * 0.75) {
+        _currentPageIndex = _currentPageIndex + 1;
+        oldContentOffsetX = _currentPageIndex * CGRectGetWidth(scrollView.bounds);
+    }
+    if (deltaContentOffsetX <= - CGRectGetWidth(scrollView.frame) * 0.75) {
+        _currentPageIndex = _currentPageIndex - 1;
+        oldContentOffsetX = _currentPageIndex * CGRectGetWidth(scrollView.bounds);
+    }
+}
+
+#pragma mark - Delegate Methods
+
+- (UIImage *)placeholderImageForIndex:(NSInteger)index
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(zoomScrollView:placeholderImageForItemAtIndex:)]) {
+        return [self.delegate zoomScrollView:self placeholderImageForItemAtIndex:index];
+    }
+    return nil;
+}
+
+- (NSURL *)imageURLForIndex:(NSInteger)index
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(zoomScrollView:imageURLForItemAtIndex:)]) {
+        return [self.delegate zoomScrollView:self imageURLForItemAtIndex:index];
+    }
+    return nil;
+}
+
+- (NSInteger)itemCount
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(numberOfItemInZoomScrollView:)]) {
+        return [self.delegate numberOfItemInZoomScrollView:self];
+    }
+    return 0;
+}
+
+#pragma mark - 图片拉伸
+
+- (void)zoomScrollViewStretchingWithOffsetY:(CGFloat)offsetY
+{
+    if (!self.enableStretch) {
         return;
     }
-    CGFloat contentOffsetX = scrollView.contentOffset.x;
-    if(contentOffsetX >= (2 * CGRectGetWidth(scrollView.frame))) {
-        self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
-        [self configureContentViews];
+    CGFloat originPercent = _originWidth / _originHeight;
+    CGFloat height = _originHeight - offsetY;
+    CGFloat width = _originWidth - offsetY * originPercent;
+    if (offsetY < -1) {
+        _collectionView.hidden = YES;
+        _stretchImageView.hidden = NO;
+        
+        YUNZoomScrollViewCell *cell = (YUNZoomScrollViewCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentPageIndex inSection:0]];
+        _stretchImageView.image = cell.imageView.image;
+        _stretchImageView.frame = CGRectMake(offsetY * originPercent / 2, 0, width, height);
+    } else {
+        _collectionView.hidden = NO;
+        _stretchImageView.hidden = YES;
+        _stretchImageView.frame = CGRectZero;
     }
-    if(contentOffsetX <= 0) {
-        self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
-        [self configureContentViews];
-    }
 }
 
-#pragma mark - Actions
 
-- (void)animationTimerDidFired:(NSTimer *)timer
-{
-    CGPoint newOffset = CGPointMake(CGRectGetWidth(_scrollView.frame) + CGRectGetWidth(_scrollView.frame), _scrollView.contentOffset.y);
-    [_scrollView setContentOffset:newOffset animated:YES];
-}
-
-- (void)contentViewTapAction:(UITapGestureRecognizer *)recognizer
-{
-    
-}
-
-#pragma mark - Override Methods
+#pragma mark - LJWZoomingHeaderViewProtocol
 
 - (void)resetSubviewsWithScrollInfo:(UIScrollViewScrollInfo *)info
 {
-    CGRect scrollFrame = _scrollView.frame;
-    _scrollView.contentSize = CGSizeMake(CGRectGetWidth(scrollFrame) * 3, 0);
+    CGFloat deltaY = info.newContentOffset.y + _originHeight - [self frameOffset];
     
-    NSInteger counter = 0;
-    for (UIView *contentView in self.contentViews) {
-        contentView.userInteractionEnabled = YES;
-        CGRect rightRect = contentView.frame;
-        rightRect.origin = CGPointMake(CGRectGetWidth(_scrollView.frame) * counter, 0);
-        rightRect.size = CGSizeMake(CGRectGetWidth(scrollFrame), CGRectGetHeight(scrollFrame));
-        counter ++;
-        contentView.frame = rightRect;
-        [_scrollView addSubview:contentView];
+    if (deltaY < 0) {
+        
+        CGRect rect = CGRectMake(_flowLayout.itemSize.width * _currentPageIndex, 0, _flowLayout.itemSize.width, _flowLayout.itemSize.height);
+        [self.collectionView scrollRectToVisible:rect animated:NO];
+        
+        _overlayView.alpha = 0.0f;
+        
+    } else if (deltaY > 0) {
+        CGFloat overlayAlpha = deltaY / (_originHeight - [self frameOffset]);
+        _overlayView.alpha = overlayAlpha;
+        
+        self.frame = CGRectMake(0, - _originHeight + [self frameOffset] + deltaY, _originWidth, _originHeight);
     }
-    
-    
 }
 
+// header最大的高度
+- (CGFloat)maximumHeight
+{
+    return 450.0f;
+}
+
+// header 往下的偏移量
 - (CGFloat)frameOffset
 {
-    return 20.f;
+    return 50.0f;
 }
 
 - (CGFloat)frameOffsetTrainsitionRate
 {
-    return 0.3f;
+    return 0.5f;
 }
+
 
 @end

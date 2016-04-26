@@ -1,14 +1,14 @@
 //
-//  YUNHeaderView.m
-//  YUNScrollHeaderView
+//  YUNBannerCell.m
+//  YUNBannerDemo
 //
 //  Created by Orange on 4/26/16.
 //  Copyright © 2016 Tordian. All rights reserved.
 //
 
-#import "YUNHeaderView.h"
+#import "YUNBannerCell.h"
 
-@implementation YUNHeaderView
+@implementation YUNBannerCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -28,23 +28,19 @@
     return self;
 }
 
-- (void)commonInit {
-    _hierarchy = YUNHeaderViewHierarchyBackground;
+- (void)commonInit
+{
+    _imageView = [[UIImageView alloc] init];
+    [self.contentView addSubview:_imageView];
 }
 
-- (void)resetSubviewsWithScrollInfo:(UIScrollViewScrollInfo *)info
+- (void)layoutSubviews
 {
+    [super layoutSubviews];
     
-}
-
-- (CGFloat)frameOffset
-{
-    return 0.f;
-}
-
-- (CGFloat)frameOffsetTrainsitionRate
-{
-    return 0.5f;
+    _imageView.frame = self.bounds;
+    
+    
 }
 
 @end

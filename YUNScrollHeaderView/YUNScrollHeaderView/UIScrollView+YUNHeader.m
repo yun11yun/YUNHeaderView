@@ -11,7 +11,6 @@
 #import "UIKit+YUNExtension.h"
 #import "YUNHeaderViewControl.h"
 #import "UIScrollView+ContentOffsetObserver.h"
-#import "YUNBaseHeaderView.h"
 
 @implementation UIScrollView (YUNHeader)
 
@@ -84,7 +83,7 @@
 
 - (void)resetHeaderViewFrame
 {
-    CGFloat offset = self.yun_headerView.frameOffset;
+    CGFloat offset = [self.yun_headerView respondsToSelector:@selector(frameOffset)] ? self.yun_headerView.frameOffset : 0;
     
     self.yun_headerView.yun_x = 0;
     self.yun_headerView.yun_y = - self.yun_headerView.yun_height + offset;

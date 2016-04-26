@@ -1,17 +1,46 @@
 //
 //  YUNZoomScrollView.h
-//  YUNScrollHeaderView
+//  YUNZoomScrollView
 //
-//  Created by bit_tea on 16/4/25.
-//  Copyright © 2016年 Tordian. All rights reserved.
+//  Created by Orange on 3/27/16.
+//  Copyright © 2016 Tordian. All rights reserved.
 //
 
-#import "YUNBaseHeaderView.h"
+#import <UIKit/UIKit.h>
+#import "YUNHeaderViewProtocol.h"
 
-@interface YUNZoomScrollView : YUNBaseHeaderView
+@class YUNZoomScrollView;
 
-@property (nonatomic, copy) NSArray *imageNames;
+@protocol YUNZoomScrollViewDelegate <NSObject>
 
-@property (nonatomic, copy) NSArray *imageURLs;
+@required
+- (NSInteger)numberOfItemInZoomScrollView:(YUNZoomScrollView *)scrollView;
+
+- (UIImage *)zoomScrollView:(YUNZoomScrollView *)scrollView placeholderImageForItemAtIndex:(NSInteger)index;
+
+@optional
+- (NSURL *)zoomScrollView:(YUNZoomScrollView *)scrollView imageURLForItemAtIndex:(NSInteger)index;
+
+- (void)zoomScrollView:(YUNZoomScrollView *)scrollView didSelectedItemAtIndex:(NSInteger)index;
+
+@end
+
+@interface YUNZoomScrollView : UIView <YUNHeaderViewProtocol>
+
+@property (nonatomic, assign) CGRect originFrame;
+
+@property (nonatomic, assign) YUNHeaderViewHierarchy hierarchy;
+
+@property (nonatomic, strong, readonly) UICollectionView *collectionView;
+
+@property (nonatomic, assign) BOOL enableStretch;
+
+@property (nonatomic, weak) id<YUNZoomScrollViewDelegate> delegate;
+
+- (instancetype)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)aniamtionDuration;
+
+- (void)zoomScrollViewStretchingWithOffsetY:(CGFloat)offsetY;
+
+- (UIImage *)imageAtIndex:(NSInteger)index;
 
 @end

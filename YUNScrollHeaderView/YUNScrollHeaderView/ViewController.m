@@ -8,14 +8,18 @@
 
 #import "ViewController.h"
 #import "UIScrollView+YUNHeader.h"
-#import "YUNHeaderView.h"
 #import "UIKit+YUNExtension.h"
 #import "YUNZoomHeaderControl.h"
-#import "YUNZoomScrollView.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "YUNHeaderView.h"
+#import "YUNZoomBannerView.h"
+
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,YUNBannerViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *dataArray;
+
+@property (nonatomic, strong) YUNZoomBannerView *headerView;
 
 @end
 
@@ -32,10 +36,11 @@
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
     
-    YUNZoomScrollView *headerView = [[YUNZoomScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.yun_width, 200)];
-    headerView.backgroundColor = [UIColor orangeColor];
-    headerView.imageNames = @[@"qiong.jpg", @"qiong1.jpg", @"qiong2.jpg",];
-    [self.tableView addHeaderView:headerView];
+    _headerView = [[YUNZoomBannerView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 240)];
+    _headerView.dataSource = self;
+    _headerView.shouldLoop = YES;
+    _headerView.pageControl.hidden = YES;
+    [self.tableView addHeaderView:_headerView];
     
     YUNZoomHeaderControl *zoomControl = [[YUNZoomHeaderControl alloc] init];
     [self.tableView addHeaderControl:zoomControl];
@@ -51,6 +56,31 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.textLabel.text = [NSString stringWithFormat:@"第%ld行",indexPath.row];
     return cell;
+}
+
+#pragma mark - YUNBannerViewDelegate
+
+- (NSInteger)numberOfItemsInBanner:(YUNZoomBannerView *)banner
+{
+    return self.dataArray.count;
+}
+
+- (UIImage *)banner:(YUNZoomBannerView *)banner imageForItemAtIndex:(NSInteger)index
+{
+    // 取出数据
+    NSString *imageName = self.dataArray[index];
+    
+    return [UIImage imageNamed:imageName];
+}
+
+#pragma mark Getter
+
+- (NSArray *)dataArray
+{
+    if (!_dataArray) {
+        _dataArray = @[@"qiong.jpg", @"qiong1.jpg", @"qiong2.jpg"];
+    }
+    return _dataArray;
 }
 
 @end
