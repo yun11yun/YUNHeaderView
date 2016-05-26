@@ -82,8 +82,6 @@
     
     headerView.frame = frame;
     
-    
-    
     //修正中心点
     CGPoint center = headerView.center;
     center.x = info.scrollingScrollView.frame.size.width / 2;

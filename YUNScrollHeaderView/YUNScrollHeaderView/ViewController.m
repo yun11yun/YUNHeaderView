@@ -12,14 +12,14 @@
 #import "YUNZoomHeaderControl.h"
 
 #import "YUNHeaderView.h"
-#import "YUNZoomBannerView.h"
+#import "YUNZoomScrollView.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,YUNBannerViewDataSource>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,YUNZoomScrollViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 
-@property (nonatomic, strong) YUNZoomBannerView *headerView;
+@property (nonatomic, strong) YUNZoomScrollView *headerView;
 
 @end
 
@@ -36,10 +36,8 @@
     _tableView.delegate = self;
     [self.view addSubview:_tableView];
     
-    _headerView = [[YUNZoomBannerView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 240)];
-    _headerView.dataSource = self;
-    _headerView.shouldLoop = YES;
-    _headerView.pageControl.hidden = YES;
+    _headerView = [[YUNZoomScrollView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 240)];
+    _headerView.delegate = self;
     [self.tableView addHeaderView:_headerView];
     
     YUNZoomHeaderControl *zoomControl = [[YUNZoomHeaderControl alloc] init];
@@ -58,29 +56,26 @@
     return cell;
 }
 
-#pragma mark - YUNBannerViewDelegate
+#pragma mark - YUNZoomScrollViewDelegate
 
-- (NSInteger)numberOfItemsInBanner:(YUNZoomBannerView *)banner
+- (NSInteger)numberOfItemInZoomScrollView:(YUNZoomScrollView *)scrollView
 {
-    return self.dataArray.count;
+    return [self images].count;
 }
 
-- (UIImage *)banner:(YUNZoomBannerView *)banner imageForItemAtIndex:(NSInteger)index
+- (UIImage *)zoomScrollView:(YUNZoomScrollView *)scrollView placeholderImageForItemAtIndex:(NSInteger)index
 {
-    // 取出数据
-    NSString *imageName = self.dataArray[index];
-    
-    return [UIImage imageNamed:imageName];
+    return [self images][index];
 }
 
-#pragma mark Getter
-
-- (NSArray *)dataArray
+- (void)zoomScrollView:(YUNZoomScrollView *)scrollView didSelectedItemAtIndex:(NSInteger)index
 {
-    if (!_dataArray) {
-        _dataArray = @[@"qiong.jpg", @"qiong1.jpg", @"qiong2.jpg"];
-    }
-    return _dataArray;
+    NSLog(@"selected %ld",index);
+}
+
+- (NSArray *)images
+{
+    return @[[UIImage imageNamed:@"qiong.jpg"],[UIImage imageNamed:@"qiong1.jpg"],[UIImage imageNamed:@"qiong2.jpg"], [UIImage imageNamed:@"test.jpg"]];
 }
 
 @end

@@ -34,8 +34,6 @@
 
 static NSString * const kCellIdentifier = @"cellIdentifier";
 
-static CGFloat oldContentOffsetX = 0.0f;
-
 @implementation YUNZoomScrollView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -51,7 +49,6 @@ static CGFloat oldContentOffsetX = 0.0f;
         
         _originWidth = frame.size.width;
         _originHeight = frame.size.height;
-        _enableStretch = NO;
         _currentPageIndex = 0;
         if (aniamtionDuration > 0.0) {
             _animationDuration = aniamtionDuration;
@@ -65,15 +62,11 @@ static CGFloat oldContentOffsetX = 0.0f;
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.minimumLineSpacing = 0;
-        flowLayout.minimumInteritemSpacing = 0;
-        _flowLayout = flowLayout;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
-        _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[YUNZoomScrollViewCell class] forCellWithReuseIdentifier:kCellIdentifier];
         [self addSubview:_collectionView];
         
@@ -94,8 +87,9 @@ static CGFloat oldContentOffsetX = 0.0f;
 {
     [super layoutSubviews];
     
-    _flowLayout.itemSize = self.bounds.size;
-    _collectionView.frame = self.bounds;
+    _collectionView.frame = CGRectMake(0, 0, _originWidth, _originHeight);
+    
+    _stretchImageView.frame = self.bounds;
     
     _overlayView.frame = self.bounds;
 }
@@ -167,20 +161,21 @@ static CGFloat oldContentOffsetX = 0.0f;
     }
 }
 
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat currentContentOffsetX = scrollView.contentOffset.x;
-    CGFloat deltaContentOffsetX = currentContentOffsetX - oldContentOffsetX;
-    if (deltaContentOffsetX >= CGRectGetWidth(scrollView.frame) * 0.75) {
-        _currentPageIndex = _currentPageIndex + 1;
-        oldContentOffsetX = _currentPageIndex * CGRectGetWidth(scrollView.bounds);
-    }
-    if (deltaContentOffsetX <= - CGRectGetWidth(scrollView.frame) * 0.75) {
-        _currentPageIndex = _currentPageIndex - 1;
-        oldContentOffsetX = _currentPageIndex * CGRectGetWidth(scrollView.bounds);
-    }
+    _currentPageIndex = indexPath.row;
+}
+
+#pragma mark - UICollectionViewFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return CGSizeMake(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
 }
 
 #pragma mark - Delegate Methods
@@ -209,31 +204,6 @@ static CGFloat oldContentOffsetX = 0.0f;
     return 0;
 }
 
-#pragma mark - 图片拉伸
-
-- (void)zoomScrollViewStretchingWithOffsetY:(CGFloat)offsetY
-{
-    if (!self.enableStretch) {
-        return;
-    }
-    CGFloat originPercent = _originWidth / _originHeight;
-    CGFloat height = _originHeight - offsetY;
-    CGFloat width = _originWidth - offsetY * originPercent;
-    if (offsetY < -1) {
-        _collectionView.hidden = YES;
-        _stretchImageView.hidden = NO;
-        
-        YUNZoomScrollViewCell *cell = (YUNZoomScrollViewCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentPageIndex inSection:0]];
-        _stretchImageView.image = cell.imageView.image;
-        _stretchImageView.frame = CGRectMake(offsetY * originPercent / 2, 0, width, height);
-    } else {
-        _collectionView.hidden = NO;
-        _stretchImageView.hidden = YES;
-        _stretchImageView.frame = CGRectZero;
-    }
-}
-
-
 #pragma mark - LJWZoomingHeaderViewProtocol
 
 - (void)resetSubviewsWithScrollInfo:(UIScrollViewScrollInfo *)info
@@ -242,16 +212,21 @@ static CGFloat oldContentOffsetX = 0.0f;
     
     if (deltaY < 0) {
         
-        CGRect rect = CGRectMake(_flowLayout.itemSize.width * _currentPageIndex, 0, _flowLayout.itemSize.width, _flowLayout.itemSize.height);
-        [self.collectionView scrollRectToVisible:rect animated:NO];
+        CGFloat originPercent = _originWidth / _originHeight;
+        CGFloat height = _originHeight - deltaY;
+        CGFloat width = _originWidth - deltaY * originPercent;
+        _collectionView.scrollEnabled = NO;
+        _collectionView.hidden = YES;
+        _stretchImageView.hidden = NO;
         
-        _overlayView.alpha = 0.0f;
-        
-    } else if (deltaY > 0) {
-        CGFloat overlayAlpha = deltaY / (_originHeight - [self frameOffset]);
-        _overlayView.alpha = overlayAlpha;
-        
-        self.frame = CGRectMake(0, - _originHeight + [self frameOffset] + deltaY, _originWidth, _originHeight);
+        YUNZoomScrollViewCell *cell = (YUNZoomScrollViewCell *)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentPageIndex inSection:0]];
+        _stretchImageView.image = cell.imageView.image;
+        _stretchImageView.frame = CGRectMake(deltaY * originPercent / 2, 0, width, height);
+    } else {
+        _collectionView.scrollEnabled = YES;
+        _collectionView.hidden = NO;
+        _stretchImageView.hidden = YES;
+        _stretchImageView.frame = CGRectZero;
     }
 }
 

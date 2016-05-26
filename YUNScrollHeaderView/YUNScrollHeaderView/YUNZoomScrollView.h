@@ -33,13 +33,9 @@
 
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
 
-@property (nonatomic, assign) BOOL enableStretch;
-
 @property (nonatomic, weak) id<YUNZoomScrollViewDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)aniamtionDuration;
-
-- (void)zoomScrollViewStretchingWithOffsetY:(CGFloat)offsetY;
 
 - (UIImage *)imageAtIndex:(NSInteger)index;
 

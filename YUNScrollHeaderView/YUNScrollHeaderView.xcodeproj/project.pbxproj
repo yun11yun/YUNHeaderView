@@ -26,9 +26,6 @@
 		C2743BA11CCF0348009955B8 /* qiong1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2743B9E1CCF0348009955B8 /* qiong1.jpg */; };
 		C2743BA21CCF0348009955B8 /* qiong2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2743B9F1CCF0348009955B8 /* qiong2.jpg */; };
 		C2743C1E1CCF3C29009955B8 /* YUNHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2743C1D1CCF3C29009955B8 /* YUNHeaderView.m */; };
-		C2743C271CCF3DB1009955B8 /* YUNBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2743C221CCF3DB1009955B8 /* YUNBannerCell.m */; };
-		C2743C281CCF3DB1009955B8 /* YUNBannerFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = C2743C241CCF3DB1009955B8 /* YUNBannerFooter.m */; };
-		C2743C291CCF3DB1009955B8 /* YUNZoomBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2743C261CCF3DB1009955B8 /* YUNZoomBannerView.m */; };
 		C29408651CCF5B380029371B /* NSTimer+Control.m in Sources */ = {isa = PBXBuildFile; fileRef = C29408641CCF5B380029371B /* NSTimer+Control.m */; };
 		C294086A1CCF5B4A0029371B /* YUNZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29408671CCF5B4A0029371B /* YUNZoomScrollView.m */; };
 		C294086B1CCF5B4A0029371B /* YUNZoomScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29408691CCF5B4A0029371B /* YUNZoomScrollViewCell.m */; };
@@ -83,12 +80,6 @@
 		C2743C1B1CCF39E4009955B8 /* YUNHeaderViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNHeaderViewProtocol.h; sourceTree = "<group>"; };
 		C2743C1C1CCF3C29009955B8 /* YUNHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNHeaderView.h; sourceTree = "<group>"; };
 		C2743C1D1CCF3C29009955B8 /* YUNHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNHeaderView.m; sourceTree = "<group>"; };
-		C2743C211CCF3DB1009955B8 /* YUNBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNBannerCell.h; sourceTree = "<group>"; };
-		C2743C221CCF3DB1009955B8 /* YUNBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNBannerCell.m; sourceTree = "<group>"; };
-		C2743C231CCF3DB1009955B8 /* YUNBannerFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNBannerFooter.h; sourceTree = "<group>"; };
-		C2743C241CCF3DB1009955B8 /* YUNBannerFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNBannerFooter.m; sourceTree = "<group>"; };
-		C2743C251CCF3DB1009955B8 /* YUNZoomBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNZoomBannerView.h; sourceTree = "<group>"; };
-		C2743C261CCF3DB1009955B8 /* YUNZoomBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUNZoomBannerView.m; sourceTree = "<group>"; };
 		C29408631CCF5B380029371B /* NSTimer+Control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Control.h"; sourceTree = "<group>"; };
 		C29408641CCF5B380029371B /* NSTimer+Control.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Control.m"; sourceTree = "<group>"; };
 		C29408661CCF5B4A0029371B /* YUNZoomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUNZoomScrollView.h; sourceTree = "<group>"; };
@@ -160,7 +151,6 @@
 				C29408691CCF5B4A0029371B /* YUNZoomScrollViewCell.m */,
 				C294086C1CCF5C8E0029371B /* YUNZoomScrollViewControl.h */,
 				C294086D1CCF5C8E0029371B /* YUNZoomScrollViewControl.m */,
-				C2743C201CCF3DB1009955B8 /* YUNBannerView */,
 				C2437F2B1CCA18E6002E09E3 /* ScrollViewObserver */,
 				C2437F171CCA09A4002E09E3 /* UIKitExtension */,
 				C2437EE01CCA01EA002E09E3 /* Main.storyboard */,
@@ -216,19 +206,6 @@
 				C2437F291CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m */,
 			);
 			name = ScrollViewObserver;
-			sourceTree = "<group>";
-		};
-		C2743C201CCF3DB1009955B8 /* YUNBannerView */ = {
-			isa = PBXGroup;
-			children = (
-				C2743C211CCF3DB1009955B8 /* YUNBannerCell.h */,
-				C2743C221CCF3DB1009955B8 /* YUNBannerCell.m */,
-				C2743C231CCF3DB1009955B8 /* YUNBannerFooter.h */,
-				C2743C241CCF3DB1009955B8 /* YUNBannerFooter.m */,
-				C2743C251CCF3DB1009955B8 /* YUNZoomBannerView.h */,
-				C2743C261CCF3DB1009955B8 /* YUNZoomBannerView.m */,
-			);
-			path = YUNBannerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,19 +317,16 @@
 				C2437F2A1CCA16FC002E09E3 /* UIScrollView+ContentOffsetObserver.m in Sources */,
 				C2743C1E1CCF3C29009955B8 /* YUNHeaderView.m in Sources */,
 				C2437F211CCA100D002E09E3 /* YUNHeaderViewControl.m in Sources */,
-				C2743C291CCF3DB1009955B8 /* YUNZoomBannerView.m in Sources */,
 				C2437F1D1CCA09A4002E09E3 /* UIScrollView+YUNExtension.m in Sources */,
 				C2437F1E1CCA09A4002E09E3 /* UIView+YUNExtension.m in Sources */,
 				C2437EDC1CCA01EA002E09E3 /* AppDelegate.m in Sources */,
 				C2437ED91CCA01EA002E09E3 /* main.m in Sources */,
 				C2437F241CCA1100002E09E3 /* UIScrollViewScrollInfo.m in Sources */,
 				C29408651CCF5B380029371B /* NSTimer+Control.m in Sources */,
-				C2743C281CCF3DB1009955B8 /* YUNBannerFooter.m in Sources */,
 				C294086A1CCF5B4A0029371B /* YUNZoomScrollView.m in Sources */,
 				C2437F311CCA341B002E09E3 /* YUNZoomHeaderControl.m in Sources */,
 				C2437F271CCA1166002E09E3 /* UIScrollViewContentOffsetObserver.m in Sources */,
 				C2437EFE1CCA0262002E09E3 /* UIScrollView+YUNHeader.m in Sources */,
-				C2743C271CCF3DB1009955B8 /* YUNBannerCell.m in Sources */,
 				C294086E1CCF5C8E0029371B /* YUNZoomScrollViewControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
